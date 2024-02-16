@@ -10,7 +10,7 @@ class Scheduling extends Model
     use HasFactory;
 
     protected $fillable = [
-        'doctor_id',
+        'professional_id',
         'patient_id',
         'date',
         'time',
@@ -36,8 +36,8 @@ class Scheduling extends Model
     /**
      * Relação entre agendamento e Profissional.
      */
-    public function doctor()
+    public function professional()
     {
-        return $this->belongsTo(Doctor::class, 'doctor_id');
+        return $this->belongsTo(Professional::class, 'professional_id');
     }
 }

@@ -8,10 +8,10 @@
         @method('PUT')
 
         <div class="form-group">
-            <label for="doctor_id">Profissional:</label>
-            <select name="doctor_id" id="doctor_id" class="form-control">
-                @foreach($doctors as $doctor)
-                    <option value="{{ $doctor->id }}" {{ $scheduling->doctor_id == $doctor->id ? 'selected' : '' }}>{{ $doctor->name }}</option>
+            <label for="professional_id">Profissional:</label>
+            <select name="professional_id" id="professional_id" class="form-control">
+                @foreach($professionals as $professional)
+                    <option value="{{ $professional->id }}" {{ $scheduling->professional_id == $professional->id ? 'selected' : '' }}>{{ $professional->name }}</option>
                 @endforeach
             </select>
         </div>

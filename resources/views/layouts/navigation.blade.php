@@ -15,7 +15,7 @@
                     <x-nav-link :href="route('schedulings.index')" :active="request()->routeIs('schedulings')">
                         {{ __('Agendamentos') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('doctors.index')" :active="request()->routeIs('doctors')">
+                    <x-nav-link :href="route('professionals.index')" :active="request()->routeIs('professionals')">
                         {{ __('Profissionais') }}
                     </x-nav-link>
                     <x-nav-link :href="route('patients.index')" :active="request()->routeIs('patients')">

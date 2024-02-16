@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <h1>Adicionar Profissional</h1>
-    <form action="{{ route('doctors.store') }}" method="POST">
+    <form action="{{ route('professionals.store') }}" method="POST">
         @csrf
         <div class="mb-3">
             <label for="name" class="form-label">Nome</label>

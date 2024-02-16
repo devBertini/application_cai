@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\ProfessionalController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\SchedulingController;
 use App\Http\Controllers\UserController;
@@ -27,8 +27,8 @@ $router->get('/', function () use ($router) {
 });
 
 
-// Rotas para Doctors
-Route::apiResource('doctors', DoctorController::class);
+// Rotas para Profissionais
+Route::apiResource('professionals', ProfessionalController::class);
 
 // Rotas para Patients
 Route::apiResource('patients', PatientController::class);

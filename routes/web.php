@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SchedulingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PatientController;
-use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\ProfessionalController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -48,13 +48,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/schedulings/{scheduling}', [SchedulingController::class, 'destroy'])->name('schedulings.destroy');
 
     // Rotas para Profissionais
-    Route::get('/doctors', [DoctorController::class, 'index'])->name('doctors.index');
-    Route::get('/doctors/create', [DoctorController::class, 'create'])->name('doctors.create');
-    Route::post('/doctors', [DoctorController::class, 'store'])->name('doctors.store');
-    Route::get('/doctors/{doctor}', [DoctorController::class, 'show'])->name('doctors.show');
-    Route::get('/doctors/{doctor}/edit', [DoctorController::class, 'edit'])->name('doctors.edit');
-    Route::put('/doctors/{doctor}', [DoctorController::class, 'update'])->name('doctors.update');
-    Route::delete('/doctors/{doctor}', [DoctorController::class, 'destroy'])->name('doctors.destroy');
+    Route::get('/professionals', [ProfessionalController::class, 'index'])->name('professionals.index');
+    Route::get('/professionals/create', [ProfessionalController::class, 'create'])->name('professionals.create');
+    Route::post('/professionals', [ProfessionalController::class, 'store'])->name('professionals.store');
+    Route::get('/professionals/{professional}', [ProfessionalController::class, 'show'])->name('professionals.show');
+    Route::get('/professionals/{professional}/edit', [ProfessionalController::class, 'edit'])->name('professionals.edit');
+    Route::put('/professionals/{professional}', [ProfessionalController::class, 'update'])->name('professionals.update');
+    Route::delete('/professionals/{professional}', [ProfessionalController::class, 'destroy'])->name('professionals.destroy');
 
     // Rotas para Pacientes
     Route::get('/patients', [PatientController::class, 'index'])->name('patients.index');

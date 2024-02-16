@@ -9,7 +9,7 @@
     </div>
     <div class="row justify-content-end mb-2">
         <div class="col-auto">
-            <a href="{{ route('doctors.create') }}" class="btn btn-primary">Adicionar Profissional</a>
+            <a href="{{ route('professionals.create') }}" class="btn btn-primary">Adicionar Profissional</a>
         </div>
     </div>
     <table class="table">
@@ -23,16 +23,16 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($doctors as $doctor)
+            @foreach ($professionals as $professional)
             <tr>
-                <td>{{ $doctor->name }}</td>
-                <td>{{ $doctor->phone }}</td>
-                <td>{{ $doctor->profession }}</td>
-                <td>{{ $doctor->crm }}</td>
+                <td>{{ $professional->name }}</td>
+                <td>{{ $professional->phone }}</td>
+                <td>{{ $professional->profession }}</td>
+                <td>{{ $professional->crm }}</td>
                 <td>
-                    <a href="{{ route('doctors.show', $doctor->id) }}" class="btn btn-info">Ver</a>
-                    <a href="{{ route('doctors.edit', $doctor->id) }}" class="btn btn-warning">Editar</a>
-                    <form action="{{ route('doctors.destroy', $doctor->id) }}" method="POST" style="display: inline-block;">
+                    <a href="{{ route('professionals.show', $professional->id) }}" class="btn btn-info">Ver</a>
+                    <a href="{{ route('professionals.edit', $professional->id) }}" class="btn btn-warning">Editar</a>
+                    <form action="{{ route('professionals.destroy', $professional->id) }}" method="POST" style="display: inline-block;">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Excluir</button>

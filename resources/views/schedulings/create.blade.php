@@ -6,10 +6,10 @@
     <form action="{{ route('schedulings.store') }}" method="POST">
         @csrf
         <div class="form-group">
-            <label for="doctor_id">Profissional:</label>
-            <select class="form-control" name="doctor_id" required>
-                @foreach($doctors as $doctor)
-                    <option value="{{ $doctor->id }}">{{ $doctor->name }}</option>
+            <label for="professional_id">Profissional:</label>
+            <select class="form-control" name="professional_id" required>
+                @foreach($professionals as $professional)
+                    <option value="{{ $professional->id }}">{{ $professional->name }}</option>
                 @endforeach
             </select>
         </div>

@@ -9,7 +9,7 @@ use Carbon\Carbon;
 
 use App\Models\Scheduling;
 use App\Models\Patient;
-use App\Models\Doctor;
+use App\Models\Professional;
 
 class SchedulingController extends Controller
 {
@@ -19,26 +19,26 @@ class SchedulingController extends Controller
     public function index(Request $request)
     {
         $date = $request->input('date', Carbon::today()->format('Y-m-d'));
-        $doctorId = $request->input('doctor_id');
+        $professionalId = $request->input('professional_id');
         $patientId = $request->input('patient_id');
         $perPage = $request->input('per_page', 15);
 
-        $schedulings = Scheduling::with(['doctor', 'patient']) // Garante que os relacionamentos estejam sendo carregados
+        $schedulings = Scheduling::with(['professional', 'patient']) // Garante que os relacionamentos estejam sendo carregados
             ->when($date, function ($query) use ($date) {
                 return $query->whereDate('date', '=', $date);
             })
-            ->when($doctorId, function ($query) use ($doctorId) {
-                return $query->where('doctor_id', $doctorId);
+            ->when($professionalId, function ($query) use ($professionalId) {
+                return $query->where('professional_id', $professionalId);
             })
             ->when($patientId, function ($query) use ($patientId) {
                 return $query->where('patient_id', $patientId);
             })
             ->paginate($perPage);
 
-        $doctors = Doctor::all();
+        $professionals = Professional::all();
         $patients = Patient::all();
 
-        return view('schedulings.index', compact('schedulings', 'doctors', 'patients', 'date', 'doctorId', 'patientId', 'perPage'));
+        return view('schedulings.index', compact('schedulings', 'professionals', 'patients', 'date', 'professionalId', 'patientId', 'perPage'));
     }
 
 
@@ -47,9 +47,9 @@ class SchedulingController extends Controller
      */
     public function create()
     {
-        $doctors = Doctor::all();
+        $professionals = Professional::all();
         $patients = Patient::all();
-        return view('schedulings.create', compact('doctors', 'patients'));
+        return view('schedulings.create', compact('professionals', 'patients'));
     }
 
     /**
@@ -58,7 +58,7 @@ class SchedulingController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'doctor_id' => 'required|integer|exists:doctors,id',
+            'professional_id' => 'required|integer|exists:professionals,id',
             'patient_id' => 'required|integer|exists:patients,id',
             'date' => 'required|date_format:Y-m-d',
             'time' => 'required|date_format:H:i',
@@ -95,9 +95,9 @@ class SchedulingController extends Controller
      */
     public function edit(Scheduling $scheduling)
     {
-        $doctors = Doctor::all();
+        $professionals = Professional::all();
         $patients = Patient::all();
-        return view('schedulings.edit', compact('scheduling', 'doctors', 'patients'));
+        return view('schedulings.edit', compact('scheduling', 'professionals', 'patients'));
     }
 
     /**
@@ -106,7 +106,7 @@ class SchedulingController extends Controller
     public function update(Request $request, Scheduling $scheduling)
     {
         $validator = Validator::make($request->all(), [
-            'doctor_id' => 'required|integer|exists:doctors,id',
+            'professional_id' => 'required|integer|exists:professionals,id',
             'date' => 'required|date_format:Y-m-d',
             'time' => 'required|date_format:H:i',
             'status' => 'sometimes|required|string',

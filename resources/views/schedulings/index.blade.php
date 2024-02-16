@@ -13,11 +13,11 @@
             </div>
             <div class="col-md-3">
                 <div class="form-group">
-                    <label for="doctor_id" class="form-label">Profissional:</label> <br>
-                    <select class="form-select" name="doctor_id" id="doctor_id">
+                    <label for="professional_id" class="form-label">Profissional:</label> <br>
+                    <select class="form-select" name="professional_id" id="professional_id">
                         <option value="">Selecione um Profissional</option>
-                        @foreach ($doctors as $doctor)
-                            <option value="{{ $doctor->id }}"{{ $doctorId == $doctor->id ? ' selected' : '' }}>{{ $doctor->name }}</option>
+                        @foreach ($professionals as $professional)
+                            <option value="{{ $professional->id }}"{{ $professionalId == $professional->id ? ' selected' : '' }}>{{ $professional->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -61,8 +61,8 @@
                 <tr>
                     <td>{{ \Carbon\Carbon::parse($scheduling->date)->format('d/m/Y') }}</td>
                     <td>{{ \Carbon\Carbon::parse($scheduling->time)->format('H:i') }}</td>
-                    <td>{{ $scheduling->doctor->name ?? 'N/A' }}</td>
-                    <td>{{ $scheduling->doctor->profession ?? 'N/A' }}</td>
+                    <td>{{ $scheduling->professional->name ?? 'N/A' }}</td>
+                    <td>{{ $scheduling->professional->profession ?? 'N/A' }}</td>
                     <td>{{ $scheduling->patient->name ?? 'N/A' }}</td>
                     <td>{{ $scheduling->status }}</td>
                     <td>

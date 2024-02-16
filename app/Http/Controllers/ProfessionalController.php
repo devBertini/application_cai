@@ -4,17 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
-use App\Models\Doctor;
+use App\Models\Professional;
 
-class DoctorController extends Controller
+class ProfessionalController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $doctors = Doctor::all();
-        return view('doctors.index', compact('doctors'));
+        $professionals = Professional::all();
+        return view('professionals.index', compact('professionals'));
     }
 
     /**
@@ -22,7 +22,7 @@ class DoctorController extends Controller
      */
     public function create()
     {
-        return view('doctors.create');
+        return view('professionals.create');
     }
 
     /**
@@ -38,31 +38,31 @@ class DoctorController extends Controller
         ]);
 
         $data = $request->only(['name', 'phone', 'profession', 'crm']);
-        $doctor = Doctor::create($data);
+        $professional = Professional::create($data);
 
-        return redirect()->route('doctors.index');
+        return redirect()->route('professionals.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Doctor $doctor)
+    public function show(Professional $professional)
     {
-        return view('doctors.show', compact('doctor'));
+        return view('professionals.show', compact('professional'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Doctor $doctor)
+    public function edit(Professional $professional)
     {
-        return view('doctors.edit', compact('doctor'));
+        return view('professionals.edit', compact('professional'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Doctor $doctor)
+    public function update(Request $request, Professional $professional)
     {
         $request->validate([
             'name' => 'required|string|max:255',
@@ -71,18 +71,18 @@ class DoctorController extends Controller
             'crm' => 'nullable|string|max:255',
         ]);
 
-        $doctor->fill($request->only(['name', 'phone', 'profession', 'crm']));
-        $doctor->save();
+        $professional->fill($request->only(['name', 'phone', 'profession', 'crm']));
+        $professional->save();
 
-        return redirect()->route('doctors.index');
+        return redirect()->route('professionals.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Doctor $doctor)
+    public function destroy(Professional $professional)
     {
-        $doctor->delete();
-        return redirect()->route('doctors.index');
+        $professional->delete();
+        return redirect()->route('professionals.index');
     }
 }
